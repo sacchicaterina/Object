@@ -1,0 +1,45 @@
+#include "cone.h"
+#define _USE_MATH_DEFINES // Indispensabile per usare M_PI su molti sistemi
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+//constructor                                                                                     
+Cone::Cone(const std::string& lbl, double rval, double hval) :Shape( lbl) {
+  raggio_ = rval;
+  altezza_ = hval;
+
+  // Chiamiamo il tuo metodo per memorizzare gli angoli subito                                    
+  get_base();
+  get_superficie();
+  get_volume();
+}
+
+double Cone::rvalue() const { return raggio_; }
+double Cone::hvalue() const { return altezza_;}
+void Cone::set_r(double rvalue) { raggio_ = rvalue; get_base(); get_superficie(); get_volume(); }
+void Cone::set_h(double hvalue) { altezza_ = hvalue; get_base(); get_superficie(); get_volume(); }
+
+// Implementazione del distruttore (necessaria se dichiarata nel .h)
+Cone::~Cone() {}
+
+void Cone::get_base() {
+  base_ = M_PI * pow(raggio_,2);
+}
+
+void Cone::get_volume() {
+  volume_ = 1.0/3.0 * base_ * altezza_;
+}
+
+void Cone::get_superficie() {
+  superficie_ = base_ + M_PI * raggio_ * sqrt( pow(raggio_,2) + pow(altezza_, 2));
+}
+
+void Cone::print() const {
+  cout << "figura geometrica: " << label << endl;
+  cout <<"raggio: " << raggio_ << " ; altezza: "<< altezza_ << endl;
+  cout <<"base: " << base_ << endl;
+  cout <<"superficie: " << superficie_ << endl;
+  cout <<"volume: " << volume_ << endl;
+}

@@ -1,0 +1,35 @@
+#ifndef BARRIER_H
+#define BARRIER_H
+
+#include "Particle.h"
+
+class Barrier {
+ private:
+  double Avalue_;
+  double Zvalue_;
+  double rhovalue_;
+  double Ivalue_;
+
+ public:
+
+  //constructor
+  Barrier(double A, double Z, double rho, double I);
+
+  //getters
+  double Avalue() const;
+  double Zvalue() const;
+  double rhovalue() const;
+  double Ivalue() const;
+
+  //setters
+  void setAvalue(double Avalue);
+  void setZvalue(double Zvalue);
+  void setrhovalue(double rhovalue);
+  void setIvalue(double Ivalue);
+
+  void print() const;
+
+  double S(const Particle &p) const;
+
+};
+#endif

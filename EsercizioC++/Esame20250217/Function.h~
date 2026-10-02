@@ -1,0 +1,24 @@
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
+#include <iostream>
+#include <string>
+
+class Function {
+  public:
+    Function(const std::string& name) { name_ = name; };
+
+    // Value of the function at a point in 3D space
+    virtual double value(double x, double y, double z) const = 0;
+
+    // Derivative of the function with respect to var at a point in 3D space
+    virtual double deriv(double x, double y, double z, char var) const = 0;
+    virtual std::string name() const { return name_; };
+
+  //distruttore virtuale: fondamentale per il polimorfismo
+  virtual ~Fuction() {}
+
+ private:
+    std::string name_;
+};
+#endif

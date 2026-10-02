@@ -1,0 +1,42 @@
+#include "Barrier.h"
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+Barrier::Barrier(double Aval, double Z, double rhoval, double Ival){
+  Avalue_ = Aval;
+  Zvalue_ = Zval;
+  rhovalue_ = rhoval;
+  Ivalue_ = Ival;
+
+}
+
+//getters e setters non ho voglia di metterli
+
+double Barrier::S(const Particle &p) const {
+  const double m_e = 0.511; // MeV
+  const double c = 1.0;
+  const double K = 0.307;   // MeV cm^2/mol (prefattore costante)
+
+  double beta = p.beta();
+  double z = p.zvalue();
+  //double constante = pow(e, 4) * N_A / (4 * M_PI * pow(epsilon_0, 2) * m_e * pow(c, 2));
+
+  double term_log = 2 * m_e * pow(c, 2) * pow(beta, 2) / (Ivalue_ * 1e-6 * (1 - pow(beta, 2)));
+
+  double Sval = K * pow(z, 2)/pow(beta, 2) * Zvalue_/Avalue_ * rhovalue_ * (log(term_log) - pow(beta, 2));
+
+  return Sval;
+}
+
+void Barrier::print(const Particle &p) const {
+  cout << "--- Dati Barriera ---" << endl;
+  cout << "Densita' (rho): " << rhovalue_ << " g/cm^3" << endl;
+  cout << "Massa Atomica (A): " << Avalue_ << " g/mol" << endl;
+  cout << "Numero Atomico (Z): " << Zvalue_ << endl;
+  cout << "Energia Eccitazione (I): " << Ivalue_ << " eV" << endl;
+  cout << "----------------------" << endl;
+  cout << "valore di S" << S(p) << "MeV/cm" << endl;
+
+}

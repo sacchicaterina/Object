@@ -1,0 +1,22 @@
+#ifndef CONE_H
+#define CONE_H
+
+#include "Shape.h"
+
+class Cone : public Shape{
+private:
+  double raggio_;
+  double altezza_;
+
+  //memorizzare
+  double base_;
+  double volume_;
+  double superficie_;
+
+public:
+  ~Cone() override;
+
+  Cone(
+  
+  
+  

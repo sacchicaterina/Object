@@ -1,0 +1,40 @@
+#ifndef POLYNOMIAL_H
+#define POLYNOMIAL_H
+
+#include "Function.h"
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Polynomial : public Function {
+ private:
+  std::vector<double> coeffs_;
+
+ public:
+  //costructor, deve accettare ache il nome per la classe base e il vettore di 10 coefficienti 
+  // const std::vector<double>& coefficienti uso questo perche invece di passare il vettore per valore, lo passo per riferimento costante. Evitando di copiare inutilmente l'intero vettore in memoria quando chiamo la funzione. 
+  Polynomial (const std:: string& name, const std::vector<double>& coefficienti);
+
+  // implementazione di getter e setter richiesta dalla traccia
+  //il getter restituisce un vettore di 10 elementi  
+  std::vector<double> getCoeff() const;
+  //il setter accetta un vettore
+  //uso const& e cambio il ome dell'argomento per evitare problemi
+  void setCoeff(const std::vector<double>& nuovi_coeff);
+
+  
+  //metodo per i valori implementandolo dalla classe base
+  double value(double x, double y, double z) const override;
+
+  //metodo per le derivate parziali
+  double deriv(double x, double y, double z, char var) const override;
+
+  //metodo per stampare i risulati non viene implementato dalla classe base
+  void print(double x, double y, double z) const;
+
+  ~Polynomial() override;
+
+};
+
+#endif

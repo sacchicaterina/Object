@@ -1,0 +1,37 @@
+#include "Polynomial.h"
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+  // 1. Definiamo 10 coefficienti: 
+  // Proviamo: P(x,y,z) = 1 + 2x + 3y + 4z + 1x^2 + 0...
+  // Indici: 0 1 2 3 4 5 6 7 8 9
+
+  vector<double> test_coeff = {1.0, 2.0, 3.0, 4.0, 1.0, 6.0, 1.0, 2.0, 3.0, 36.0};
+
+  // 2. Creazione dell'oggetto Polynomial
+  // Nota: passiamo il nome "PolyTest" e il vettore
+  Polynomial p1("PolyTest", test_coeff);
+
+  cout << "--- TEST CLASSE POLYNOMIAL ---" << endl;
+
+  // 3. Test del metodo print (che internamente chiama value e deriv)
+  // Valutiamo nel punto (1, 1, 1)
+  // Calcolo atteso: 1 + 2(1) + 3(1) + 4(1) + 1(1^2) = 11.0
+  double x = 3.0, y = 2.0, z = 3.0;
+  p1.print(x, y, z);
+  // 4. Test del Setter e Getter
+  cout << "\nModifica coefficienti in corso..." << endl;
+  vector<double> nuovi_coeff = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // Solo a9 * y * z
+  p1.setCoeff(nuovi_coeff);
+    
+  // Calcolo atteso in (1, 1, 1): 0 + ... + 1*(1*1) = 1.0
+  p1.print(1.0, 1.0, 1.0);
+
+  return 0;
+}
+
+  

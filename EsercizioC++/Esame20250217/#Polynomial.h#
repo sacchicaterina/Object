@@ -1,0 +1,13 @@
+#ifndef POLYNOMIAL_H
+#define POLYNOMIAL_H
+
+#include "Fuction.h"
+
+#include <iostream>
+#include <string>
+
+class Polynomial : public Function {
+ public:
+
+  //costrutture
+  Function
